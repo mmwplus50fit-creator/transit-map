@@ -6,7 +6,7 @@ Version 0.1.0. Independent, non-commercial SAC project for Magnus. No account, d
 
 First edition built with route search, vehicle-number search, bus/streetcar filters, device-local favourite routes, route polylines, vehicle details, optional location, live following and explicit stale/offline states. Arrival predictions and subway trains are not included.
 
-`public/config.js` has an empty API URL, so the public interface is in clearly labelled **recorded snapshot mode**. This is actual TTC data captured during development, not a simulation. It must not be described as a live deployment until a relay is configured and verified. `public/data/snapshot.json` preserves its capture and upstream report timestamps.
+`public/config.js` connects to the public live relay at https://transit-map-xi.vercel.app/api/vehicles. The frontend is hosted at https://transit-map-xi.vercel.app/. The bundled recorded snapshot is used only if an owner deliberately clears the API URL; live failures do not silently switch to recorded data. The map polls every 30 seconds while visible and preserves TTC report timestamps.
 
 ## Why a relay?
 
@@ -21,7 +21,7 @@ The official HTTPS vehicle endpoint responded successfully but supplied no Acces
 5. Enable GitHub Pages with **GitHub Actions** as source. The supplied workflow publishes only `public/`. Run it and verify desktop/mobile access, data refreshes and stale/failure states.
 6. A custom domain is deferred. No DNS change is needed for development.
 
-Alternatively, serving both the frontend and relay on Vercel works by setting `apiUrl` to `/api/vehicles`, but GitHub Pages is the owner's preferred frontend host. No Vercel project has yet been created by this build.
+Alternatively, serving both the frontend and relay on Vercel works by setting `apiUrl` to `/api/vehicles`, but GitHub Pages is the owner's preferred frontend host. The linked Vercel project is `transit-map`, on the owner-confirmed Hobby plan. Its public production alias is `transit-map-xi.vercel.app`. GitHub Pages remains an optional frontend using the same relay.
 
 ## Update and recovery
 
@@ -38,7 +38,7 @@ Alternatively, serving both the frontend and relay on Vercel works by setting `a
 - Official vehicle feed: https://bustime.ttc.ca/gtfsrt/vehicles
 - Feed catalogue: https://open.toronto.ca/dataset/ttc-bustime-real-time-next-vehicle-arrival-nvas/
 - Matching schedule: https://open.toronto.ca/dataset/surface-routes-and-schedules-for-bustime/
-- Catalogue pages link Open Government Licence – Toronto; API metadata currently says `license_id: notspecified`. Preserve this discrepancy for review before public launch, and include attribution. Do not claim TTC endorsement.
+- The catalogue and City FAQ identify the Open Government Licence – Toronto (https://open.toronto.ca/open-data-licence/); the API metadata field `license_id` says `notspecified`. Attribution is included; no TTC endorsement is claimed.
 - Contains information licensed under the Open Government Licence – Toronto.
 - Map tiles © OpenStreetMap contributors; use normal interactive browsing only, no prefetch/bulk/offline tile downloads. Tile policy: https://operations.osmfoundation.org/policies/tiles/
 - Leaflet 1.9.4 vendored with its licence. GTFS-Realtime bindings are pinned via npm.

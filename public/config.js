@@ -1,3 +1,2 @@
-// For GitHub Pages, set apiUrl to the deployed relay's HTTPS /api/vehicles URL.
-// Empty means use the clearly labelled bundled research snapshot.
-window.TRANSIT_CONFIG = { apiUrl: '', refreshMs: 30000, staleAfterSeconds: 180 };
+// Public TTC relay shared by the Vercel and GitHub Pages frontends.
+window.TRANSIT_CONFIG = { apiUrl: 'https://transit-map-xi.vercel.app/api/vehicles', refreshMs: 30000, staleAfterSeconds: 180 };
