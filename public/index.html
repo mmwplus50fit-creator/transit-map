@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173f38"><meta name="description" content="A quieter way to explore Toronto transit. Find TTC surface routes, inspect reported vehicle positions, and follow your ride.">
+<title>Transit Map · Toronto in motion</title>
+<link rel="stylesheet" href="vendor/leaflet.css"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#search">Skip to route search</a>
+<header><a class="brand" href="./" aria-label="Transit Map home"><span class="brand-mark" aria-hidden="true">↗</span><span>Transit Map<small>TORONTO IN MOTION</small></span></a><div class="header-right"><span class="city-label">Toronto, Ontario</span><button id="aboutButton" class="quiet">About the map</button></div></header>
+<main>
+<aside class="sidebar" aria-label="Find a route">
+<div class="intro"><span class="eyebrow">A DIFFERENT VIEW OF YOUR CITY</span><h1>Watch the<br>city move.</h1><p>Your route. Your ride.<br>A little less wondering.</p></div>
+<div class="search-wrap"><label for="search">Find a route or vehicle</label><input type="search" id="search" placeholder="Try 504, Queen, or a vehicle number" autocomplete="off"></div>
+<div class="filters" role="group" aria-label="Vehicle type"><button data-mode="all" aria-pressed="true">All</button><button data-mode="streetcar" aria-pressed="false">Streetcars</button><button data-mode="bus" aria-pressed="false">Buses</button><button id="saved" aria-pressed="false">☆ Saved</button></div>
+<div class="list-heading"><span id="listTitle">Routes reporting vehicles</span><button id="clear" class="text-button">Reset</button></div>
+<div id="routes" class="route-list" aria-label="Route results"></div>
+<div class="sidebar-foot"><span class="key bus"></span> Bus <span class="key streetcar"></span> Streetcar <span class="key old"></span> Older report<p>Independent project · Not an official TTC service</p></div>
+</aside>
+<section class="map-section" aria-label="Toronto transit map">
+<div id="map" aria-label="Map of reported TTC vehicle positions"></div>
+<div class="map-top"><div class="status-card"><span class="status-dot" id="statusDot"></span><div><strong id="status">Loading positions…</strong><small id="updated">Checking the latest available report</small></div></div><div class="map-controls"><button id="refresh" title="Refresh vehicle positions" aria-label="Refresh vehicle positions">↻</button><button id="locate" title="Show my location" aria-label="Show my location">◎</button><button id="fit" title="Fit shown vehicles" aria-label="Fit shown vehicles">⤢</button></div></div>
+<div id="notice" class="notice" role="status" hidden></div>
+<div class="map-caption"><span id="vehicleCount">—</span> vehicles shown <span class="divider">/</span> <span id="routeCaption">TTC surface network</span></div>
+<article id="detail" class="detail" hidden aria-label="Selected vehicle"><button id="closeDetail" class="close" aria-label="Close vehicle details">×</button><span class="eyebrow" id="detailType"></span><h2 id="detailTitle"></h2><p id="detailRoute"></p><dl id="detailFacts"></dl><button id="follow">Follow this vehicle</button><p class="detail-note">Positions update when reported. Map lines show scheduled route variants, not a guaranteed path for this vehicle.</p></article>
+</section>
+</main>
+<dialog id="about"><button id="closeAbout" class="close" aria-label="Close about">×</button><span class="eyebrow">TRANSIT MAP / FIRST EDITION</span><h2>A window onto Toronto.</h2><p>Explore buses and streetcars using TTC BusTime positions and its matching surface schedule. Subway trains are not included.</p><p>When connected, positions refresh every 30 seconds while this page is visible. Reports older than 3 minutes are marked as older; positions older than 15 minutes are hidden in live mode. An unknown report time is never treated as fresh.</p><p>The preview uses an actual captured TTC report, clearly labelled as a snapshot. It does not simulate movement or arrival times.</p><p>Favourites stay on this device. Location is optional and used in your browser only. No account or AI service is needed.</p><p><a href="https://open.toronto.ca/dataset/ttc-bustime-real-time-next-vehicle-arrival-nvas/" target="_blank" rel="noopener">Vehicle data</a> · <a href="https://open.toronto.ca/dataset/surface-routes-and-schedules-for-bustime/" target="_blank" rel="noopener">Route data</a> · <a href="https://www.ttc.ca/service-alerts" target="_blank" rel="noopener">Official TTC service alerts</a></p><p class="detail-note">Contains information licensed under the Open Government Licence – Toronto. Map © OpenStreetMap contributors. Independent, unofficial project; data may be delayed or incomplete.</p></dialog>
+<script src="vendor/leaflet.js"></script><script src="config.js"></script><script src="app.js"></script>
+</body></html>
